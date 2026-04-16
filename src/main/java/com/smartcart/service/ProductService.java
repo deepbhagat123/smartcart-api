@@ -1,5 +1,6 @@
 package com.smartcart.service;
 
+import com.smartcart.exception.ProductNotFoundException;
 import com.smartcart.model.Electronics;
 import com.smartcart.model.Grocery;
 import com.smartcart.model.Product;
@@ -34,5 +35,14 @@ public class ProductService {
                 request.getWarrantyMonths()
         );
         products.add(product);
+    }
+
+
+
+    public Product getProductById(int id) {
+        if (id < 0 || id >= products.size()) {
+            throw new ProductNotFoundException("Product not found with id: " + id);
+        }
+        return products.get(id);
     }
 }

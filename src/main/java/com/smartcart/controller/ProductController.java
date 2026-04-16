@@ -32,5 +32,11 @@ public class ProductController {
         return ResponseEntity.status(201).body("Product added successfully!");
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> getProductById(@PathVariable int id) {
+        Product product = productService.getProductById(id);
+        return ResponseEntity.ok(product);
+    }
+
 
 }
