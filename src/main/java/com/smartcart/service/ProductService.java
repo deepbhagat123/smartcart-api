@@ -45,4 +45,10 @@ public class ProductService {
         }
         return products.get(id);
     }
+    public void deleteProduct(int id) {
+        if (id < 0 || id >= products.size()) {
+            throw new ProductNotFoundException("Product not found with id: " + id);
+        }
+        products.remove(id);
+    }
 }
