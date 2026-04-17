@@ -5,7 +5,7 @@ package com.smartcart.controller;
 import com.smartcart.model.Product;
 import com.smartcart.model.ProductRequest;
 import com.smartcart.service.ProductService;
-import org.springframework.http.ResponseEntity;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
@@ -26,8 +26,9 @@ public class ProductController {
     public List<Product> getAllProducts(){
         return productService.getAllProducts();
     }
+
     @PostMapping
-    public ResponseEntity<String> addProduct(@RequestBody ProductRequest request) {
+    public ResponseEntity<String> addProduct(@Valid @RequestBody ProductRequest request) {
         productService.addProduct(request);
         return ResponseEntity.status(201).body("Product added successfully!");
     }
