@@ -41,4 +41,13 @@ public class ProductService {
         }
         productRepository.deleteById(id);
     }
+
+    public ProductEntity updateProduct(Long id, ProductRequest request) {
+        ProductEntity product = productRepository.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException("Product not found with id: " + id));
+        product.setName(request.getName());
+        product.setPrice(request.getPrice());
+        product.setStockQuantity(request.getStockQuantity());
+        return productRepository.save(product);
+    }
 }
